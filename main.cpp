@@ -1,5 +1,3 @@
-// C++ implementation to read
-// file word by word
 #include <bits/stdc++.h>
 #include<iostream>
 #include<string>
@@ -9,8 +7,8 @@ using namespace std;
 class wordGame
 {
 public:
-  string word;
-  bool found = false;
+  string word,check[200];
+  bool found = false,wordCheck = false;
   int score = 0;
   char lastLetter,firstLetter,checkLetter;
   void inputWord();
@@ -35,15 +33,20 @@ void wordGame :: inputWord(){
 
 void wordGame :: checkLastLetter(){
   if(firstLetter == checkLetter){
-      
+      for(int i=0;i<=score;i++){
+        if(check[i] == word){
+          wordCheck = true;
+          break;
+        }
+      }
+      if(wordCheck == false){
+      check[score-1] = word;
       score++;
       checkLetter = lastLetter;
       inputWord();
+      }
   }
-  else
-  {
-    cout<<"game over!\n Your score is : "<<score;
-  }
+   // cout<<"game over!\n Your score is : "<<score;
 }
 
 void wordGame :: checkDisc(){
@@ -70,7 +73,7 @@ int main(){
   cin>>obj.word;
   obj.firstLetter = obj.checkLetter;
   obj.checkDisc();
-  if(obj.found == false){
+  if(obj.found == false || obj.wordCheck == true){
     cout<<"Game over!\n"<<"Your score is : "<<obj.score;
   }
   return 0;
