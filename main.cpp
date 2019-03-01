@@ -31,6 +31,7 @@ void wordGame :: inputWord(){
   checkDisc();
 }
 
+//checking the last letter with the word
 void wordGame :: checkLastLetter(){
   if(firstLetter == checkLetter){
       for(int i=0;i<=score;i++){
